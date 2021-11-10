@@ -5,17 +5,24 @@
 
 
 * {
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
+    // box-sizing: border-box;
+    max-width: 100vw;
+   
+    
 }
 
 body{
-    margin: 0 auto;
-    width: 1024px;
+    padding: 0;
+    margin: 0;
+    // height: 100vh;
+    text-align: center;
     background-color: #A73802;
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
     color: wheat;
+ 
 
 }
 .wrapper{
@@ -23,9 +30,72 @@ body{
 }
 
 header{
-    background-image: url(/assets/felix-mooneeram-evlkOfkQ5rE-unsplash.jpg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../assets/felix-mooneeram-evlkOfkQ5rE-unsplash.jpg);
     background-size: contain;
+    margin: 90px 0;
     width: 100%;
-    height: 100px;
+    height: 40vh;
+}
 
+h1{
+    font-size: 70px;
+    text-transform: uppercase;
+}
+
+.container{
+    width: 100%;
+    background-color: antiquewhite;
+    padding: 50px 0 ;
+    text-align: center;
+
+}
+
+.custom-selector{
+    position: relative;
+    display: inline-block;
+    justify-content: space-around;
+    font-size: 16px;
+    color: #020200;
+    width: 45%;
+    h2{
+        text-align: start;
+    }
+
+}
+
+
+.custom-selector select{
+    min-height: 35px;
+    background-color: wheat;
+    border-radius: 5px;
+    border: 2px solid #A73802;
+    padding: 10px 20px;
+    margin-top: 5px;
+    width: 100%;
+    cursor: pointer;
+    appearance: none;
+    outline: none;
+}
+
+.custom-selector::after{
+    content:'';
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent;
+    border-top: #020200;
+    display: inline-block;
+    position: absolute;
+    bottom: 10px;
+}
+
+
+footer{
+    margin-top: 40px;
+    text-align: center;
+    background-color: #020200;
+    padding: 40px 0;
+    
 }
