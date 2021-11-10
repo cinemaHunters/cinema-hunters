@@ -304,6 +304,17 @@ h1 {
   outline: none;
 }
 
+.custom-selector::after {
+  content: "";
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent;
+  border-top: #020200;
+  display: inline-block;
+  position: absolute;
+  bottom: 10px;
+}
+
 footer {
   margin-top: 40px;
   text-align: center;
