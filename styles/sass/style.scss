@@ -90,6 +90,19 @@ h1{
     bottom: 10px;
 }
 
+li{
+    list-style:none;
+    text-align:left;
+    margin-top:20px;
+    padding:20px;
+    border:2px solid wheat;
+    
+    h2{
+        text-align:center;
+        margin-bottom:10px
+    }
+}
+
 
 footer{
     margin-top: 40px;
