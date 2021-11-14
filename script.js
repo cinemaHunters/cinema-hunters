@@ -8,16 +8,29 @@ const cinemaHunters = {}
 
 //Set up API key/url✔
 cinemaHunters.apiKey = 'df23e141e5849f2396ad851c2744c80c';
-cinemaHunters.apiUrl = 'https://api.themoviedb.org/3/movie/550';
+cinemaHunters.apiUrl = 'https://api.themoviedb.org/3';
 //add endpoints?
 cinemaHunters.endPoints = 'https://api.themoviedb.org/3/genre/movie/list?api_key=df23e141e5849f2396ad851c2744c80c'
 
+// https://api.themoviedb.org/3/discover/movie?api_key=df23e141e5849f2396ad851c2744c80c&with_genres=28
+
 //make a method to define how to get the listings from the API
-cinemaHunters.getMovies = () => {
-    const url = new URL(cinemaHunters.apiUrl);
+cinemaHunters.getMovies = (genreChoice, year) => {
+    const url = new URL(`${cinemaHunters.apiUrl}/discover/movie`);
     url.search= new URLSearchParams({
         api_key: cinemaHunters.apiKey,
-        list: genreChoice
+        with_genres: genreChoice,
+        year: year
+    })
+    //fetch the API using url variable✔
+	//pass call back function to retrieve info from API✔
+	//parse API into JSON to return an array✔
+    fetch (url)
+    .then ((response)=>{
+        return response.json()
+    })
+    .then((jsonResponse) =>{
+        cinemaHunters.displayMovies(jsonResponse.results)
     })
 }
 
@@ -30,25 +43,17 @@ console.log(cinemaHunters)
 cinemaHunters.setUpEventListeners = () => {
     document.getElementById('genre').addEventListener('change',(event) => {
         const genreChoice = event.target.value
-        cinemaHunters.displayMovies(genreChoice)
+        // console.log(genreChoice)
+        // console.log(event)
+         cinemaHunters.getMovies(genreChoice, 2005);
         
     })
 
     //! How do we create a duplicate event listener (one for each dropdown) without duplicating unnecessarily? Does this need to be a filter?
     
-    
  }
 
-//fetch the API using url variable✔
-	//pass call back function to retrieve info from API✔
-	//parse API into JSON to return an array✔
-fetch (url)
-    .then ((response)=>{
-        return response.json()
-    })
-    .then((jsonResponse) =>{
-        cinemaHunters.displayMovies(jsonResponse)
-    })
+
 
 //filter the JSON array with the user inputs and return only the results matching the selectedyear & genre
 
@@ -63,19 +68,21 @@ fetch (url)
     cinemaHunters.displayMovies = ((arrayDataFromAPI)=> {
         const ul = document.querySelector('ul');
         
-        
-        arrayDataFromAPI.forEach((movie) => {
-            const li = document.createElement('li');
-            const img = document.createElement('img');
-            img.src = movie.poster_path;
-            img.alt = movie.title;
-            
-            const h2 = document.createElement('h2');
-            movieTitle.innerText = movie.title;
 
-            li.appendChild(img);
-            li.appendChild(h2);
-            ul.appendChild(li);
+        arrayDataFromAPI.forEach((movie) => {
+            // const li = document.createElement('li');
+            // const img = document.createElement('img');
+            // img.src = movie.poster_path;
+            // img.alt = movie.title;
+            
+            // const h2 = document.createElement('h2');
+            // movieTitle.innerText = movie.title;
+
+            // li.appendChild(img);
+            // li.appendChild(h2);
+            // ul.appendChild(li);
+
+            console.log(movie)
 
 
         })
@@ -87,11 +94,11 @@ fetch (url)
 //create an init that runs the retrieve, filter and display methods
 
 cinemaHunters.init = () => {
-    cinemaHunters.getMovies();
+   
     //cinemaHunters.filterMovies();
-    cinemaHunters.displayMovies();
+    cinemaHunters.setUpEventListeners()
+   
 }
 
 //call init
-
 cinemaHunters.init();
