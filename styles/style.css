@@ -286,7 +286,10 @@ h1 {
   width: 45%;
 }
 .custom-selector h2 {
-  text-align: start;
+  text-align: center;
+}
+.custom-selector p {
+  padding: 20px;
 }
 
 .custom-selector select {
@@ -313,6 +316,18 @@ h1 {
   display: inline-block;
   position: absolute;
   bottom: 10px;
+}
+
+li {
+  list-style: none;
+  text-align: left;
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid wheat;
+}
+li h2 {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 footer {
