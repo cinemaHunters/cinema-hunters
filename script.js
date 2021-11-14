@@ -12,17 +12,23 @@ const cinemaHunters = {}
 cinemaHunters.apiKey = 'df23e141e5849f2396ad851c2744c80c';
 cinemaHunters.apiUrl = 'https://api.themoviedb.org/3';
 
+// https://api.themoviedb.org/3/discover/movie?api_key=df23e141e5849f2396ad851c2744c80c&with_genres=28
+
 //make a method to define how to get the listings from the API
-cinemaHunters.getMovies = (genreChoice, year) => { //!
+
+cinemaHunters.getMovies = (genreChoice, year) => {
     const url = new URL(`${cinemaHunters.apiUrl}/discover/movie`);
     url.search= new URLSearchParams({
         api_key: cinemaHunters.apiKey,
         with_genres: genreChoice,
-        // release_date: year //!
+        release_date: year 
     })
+
+
     //fetch the API using url variable✔
 	//pass call back function to retrieve info from API✔
 	//parse API into JSON to return an array✔
+
     fetch (url)
     .then ((response)=>{
         return response.json()
@@ -32,7 +38,7 @@ cinemaHunters.getMovies = (genreChoice, year) => { //!
         console.log(jsonResponse.results) //*CONSOLE LOG HERE*/
     })
 
-    //Create a filter to sort out the films based on user selection for year, and then return only those results //! Will also need to change the displayMovies function? (line 73)
+    // Create a filter to sort out the films based on user selection for year, and then return only those results //! Will also need to change the displayMovies function? (line 73)
     // let filteredMovies = jsonResponse.results.filter(film => {
     //     return obj.release_date == `${year}`;
     // })
@@ -44,15 +50,13 @@ cinemaHunters.getMovies = (genreChoice, year) => { //!
 //Store the user inputs as variables
 
 cinemaHunters.setUpEventListeners = () => {
-    document.getElementById('genre', 'decade').addEventListener('change',(event) => { //!
+    document.getElementById('genre', 'decade').addEventListener('change',(event) => { 
         const genreChoice = event.target.value
-        const year = event.target.value //!
-
-        cinemaHunters.getMovies(genreChoice, year); //!
+        const year = event.target.value 
+        cinemaHunters.getMovies(genreChoice, year); 
         // console.log(year);
     })   
 }
-
 
 
 //filter the JSON array with the user inputs and return only the results matching the selectedyear & genre
@@ -96,3 +100,4 @@ cinemaHunters.init = () => {
 //call init
 
 cinemaHunters.init();
+
