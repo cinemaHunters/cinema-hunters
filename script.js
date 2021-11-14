@@ -1,7 +1,6 @@
 //* API Key: df23e141e5849f2396ad851c2744c80c
 //* Example API Request: https://api.themoviedb.org/3/movie/550?api_key=df23e141e5849f2396ad851c2744c80c
 
-//! All spots involving the year are marked with //! (in case we need to remove them)
 
 //In HTML: Have the ability for the user to input year and genre, and create an empty <ul> to contain ✔
 
@@ -12,16 +11,13 @@ const cinemaHunters = {}
 cinemaHunters.apiKey = 'df23e141e5849f2396ad851c2744c80c';
 cinemaHunters.apiUrl = 'https://api.themoviedb.org/3';
 
-// https://api.themoviedb.org/3/discover/movie?api_key=df23e141e5849f2396ad851c2744c80c&with_genres=28
-
 //make a method to define how to get the listings from the API
 
-cinemaHunters.getMovies = (genreChoice, year) => {
+cinemaHunters.getMovies = (genreChoice) => {
     const url = new URL(`${cinemaHunters.apiUrl}/discover/movie`);
     url.search= new URLSearchParams({
         api_key: cinemaHunters.apiKey,
         with_genres: genreChoice,
-        release_date: year 
     })
 
 
@@ -35,34 +31,17 @@ cinemaHunters.getMovies = (genreChoice, year) => {
     })
     .then((jsonResponse) =>{
         cinemaHunters.displayMovies(jsonResponse.results)
-        console.log(jsonResponse.results) //*CONSOLE LOG HERE*/
     })
-
-    // Create a filter to sort out the films based on user selection for year, and then return only those results //! Will also need to change the displayMovies function? (line 73)
-    // let filteredMovies = jsonResponse.results.filter(film => {
-    //     return obj.release_date == `${year}`;
-    // })
-
 }
-
-// console.log(cinemaHunters)
 
 //Store the user inputs as variables
 
 cinemaHunters.setUpEventListeners = () => {
-    document.getElementById('genre', 'decade').addEventListener('change',(event) => { 
+    document.getElementById('genre').addEventListener('change',(event) => { 
         const genreChoice = event.target.value
-        const year = event.target.value 
-        cinemaHunters.getMovies(genreChoice, year); 
-        // console.log(year);
+        cinemaHunters.getMovies(genreChoice); 
     })   
 }
-
-
-//filter the JSON array with the user inputs and return only the results matching the selectedyear & genre
-
-
-//filter the JSON array with the user inputs and return only the results matching the selected year & genre
 
 
 //create a method to display list
